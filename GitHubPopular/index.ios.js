@@ -9,10 +9,12 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
+  Navigator,
   View,
   Image,
 } from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
+import Boy from './Boy'
 
 export default class GitHubPopular extends Component {
     constructor(props) {
@@ -62,6 +64,15 @@ export default class GitHubPopular extends Component {
                         <View style={{backgroundColor: 'blue',flex:1}}></View>
                     </TabNavigator.Item>
                 </TabNavigator>
+                {/* <Navigator
+                    initialRoute={{
+                        component: Boy,
+                    }}
+                    renderScene={(route,navigator)=>{
+                        let Component=route.component;
+                        return <Component navigator={navigator} {...route.params}/>;
+                    }}
+                /> */}
             </View>
         );
     }
