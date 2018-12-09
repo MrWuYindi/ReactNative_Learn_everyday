@@ -11,24 +11,39 @@ import {
   Text,
   View
 } from 'react-native';
+import TabNavigator from 'react-native-tab-navigator';
 
 export default class GitHubPopular extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
-    );
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            selectedTab: 'home',
+        }
+    }
+    render() {
+        return (
+            <View style={styles.container}>
+                <TabNavigator>
+                    <TabNavigator.Item
+                        selected={this.state.selectedTab === 'home'}
+                        title="Home"
+                        renderIcon={() => <Image source={require('./res/images/ic_polular.png')} />}
+                        renderSelectedIcon={() => <Image source={require('./res/images/ic_polular.png')} />}
+                        onPress={() => this.setState({ selectedTab: 'home' })}>
+                        <View></View>
+                    </TabNavigator.Item>
+                    <TabNavigator.Item
+                        selected={this.state.selectedTab === 'profile'}
+                        title="Profile"
+                        renderIcon={() => <Image source={require('./res/images/ic_trending.png')} />}
+                        renderSelectedIcon={() => <Image source={require('./res/images/ic_trending.png')} />}
+                        onPress={() => this.setState({ selectedTab: 'profile' })}>
+                        <View></View>
+                    </TabNavigator.Item>
+                </TabNavigator>
+            </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
@@ -38,16 +53,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  page1: {
+    flex: 1,
+    backgroundColor: 'red',
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  page2: {
+    flex: 1,
+    backgroundColor: 'yellow',
+  }
 });
 
 AppRegistry.registerComponent('GitHubPopular', () => GitHubPopular);
